@@ -326,12 +326,14 @@ client.on('guildUpdate', async member => {
 
 
 client.on('roleDelete', async role => {
+let embed = new MessageEmbed()
+ let rolsildipic = client.channels.cache.get(config.logs); 
   let entry = await role
   .guild.fetchAuditLogs({type: 'ROLE_DELETE'})
   .then(audit => audit.entries.first());
-  let embed = new MessageEmbed()
-  let rolsildipic = client.channels.cache.get(config.logs); 
-  if (rolsildipic) { rolsildipic.send(new MessageEmbed()
+
+  if (rolsildipic) 
+{ rolsildipic.send(new MessageEmbed()
   .setColor("RED")
   .setTitle('Bir Rol Silindi! Rolün Özellikleri:')
   .setDescription(`> ❯ Rolün İdsi: \`${role.id}\`
@@ -344,13 +346,14 @@ client.on('roleDelete', async role => {
 );
 
 client.on('channelDelete', async channel => {
+ let embed = new MessageEmbed()
   let kanalsildipic = client.channels.cache.get(config.logs);
   let entry = await channel
   .guild.fetchAuditLogs({type: 'CHANNEL_DELETE'})
   .then(audit => audit.entries.first());
-  let embed = new MessageEmbed()
-  if (kanalsildipic) { 
-   kanalsildipic.send(new MessageEmbed()
+ 
+  if (kanalsildipic)
+ { kanalsildipic.send(new MessageEmbed()
   .setColor("RED")
   .setTitle('Bir Rol Silindi! Rolün Özellikleri:')
   .setDescription(`> ❯ Rolün İdsi: \`${channel.id}\`
